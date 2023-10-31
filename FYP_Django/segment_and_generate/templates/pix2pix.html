@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generation</title>
+{#    <script src="{% static 'js/jquery-3.6.3.min.js' %}" type="text/javascript"></script>#}
+    <link rel="stylesheet" type="text/css" href={% static 'css/panting.css' %}>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<h1 class="heading">File Submit Demo - Generation & Painting</h1>
+<h2 class="subheading" style="text-align: right;">See also <a href={% url 'upload_seg' %}>Segmentation</a></h2>
+<div id="content">
+<form id="fm2" action="{% url 'upload_gan' %}" method="post"
+      enctype="multipart/form-data">
+    {% csrf_token %}
+    <p class="file">
+        <input type="file" id="upload_image_to_generation" accept="image/png, image/jpg, image/jpeg" name="up_img_to_gan">
+        <label for="upload_image_to_generation">Select your mask to GAN</label>
+    </p>
+    <button class="custom-btn btn-13" type="submit" class="btn btn-success btn-block">Submit</button>
+    <br/><span style="color: crimson">{{ error_msg }}</span>
+</form>
+
+<div style="text-align: center">
+
+<div class="wrap-img">
+    <h3 class="subheading"> INPUT </h3>
+    <img src={% static imgs_info.upload_image %}
+                 alt="Upload_Image" width="256" height="256">
+</div>
+
+<div class="wrap-img">
+    <h3 class="subheading"> OUTPUT </h3>
+<img src={% static imgs_info.output_img %}
+         alt="Output_Image" width="256" height="256">
+</div>
+
+</div>
+
+
+<form id="fm_gan2" action="{% url 'upload_gan' %}" method="post"
+      enctype="multipart/form-data">
+    <h2 class="subheading">Pleause the following tools to draw your mask, <br />and upload it by the 'upload' ICON.</h2>
+    <button class="custom-btn btn-13" type="submit" id="upload" class="btn btn-success btn-block">Upload</button>
+    {% csrf_token %}
+    <input type="hidden" name="canvas_base64" id="canvas_base64">
+    <canvas id="canvas" width="256" height="256">Your browser does not support canvas element.</canvas>
+    <br/>
+
+</form>
+</div>
+<div id="control" class="down">
+    <div class="container">
+        <h1 class="heading" style="color: #167D7F">Canvass.</h1><!--
+     --><div class="control-box">
+            <div class="control-header">Toolkit</div>
+            <div id="tools" class="control-inner">
+            </div>
+        </div><!--
+     --><div class="control-box brush">
+        <div class="control-header">Brush Settings</div>
+            <div class="brush">
+                <div class="control-inner">
+                    <div class="control-header" style="margin-top:10px!important">Size</div>
+                    <input id="brush" type="text" value="5"/>
+                </div>
+            </div>
+        </div><!--
+     --><div class="control-box palette">
+            <div class="control-header">Palette</div>
+            <div id="paints" class="control-inner">
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src={% static "js/panting_logic.js" %}></script>
+
+</body>
+</html>
