@@ -1,7 +1,8 @@
 # Mask to Image
 Part of the code of my final year project at XJTLU. 
 ### Django
-[Demo Video](https://drive.google.com/file/d/1fkPhVcdM5KS16IidGMye9LuGzOMffxph/view?usp=sharing)
+[Demo Video 1](https://drive.google.com/file/d/1VdG2TlYldFl5UC_1MO8U5aeQQhnyGoC7/view?usp=drive_link)
+[Demo Video 2](https://drive.google.com/file/d/1fkPhVcdM5KS16IidGMye9LuGzOMffxph/view?usp=drive_link)
 
 The Django project for final web deployment.
 
